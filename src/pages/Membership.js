@@ -19,7 +19,7 @@ export default function Membership(){
     };
 
     // 회원가입 버튼 클릭시
-    const handleSubmit = (e)=>{
+    const handleRegister = (e)=>{
         e.preventDefault();
         console.log("회원가입 버튼 클릭 : ", emailInfo, passwordInfo);
 
@@ -53,7 +53,7 @@ export default function Membership(){
                 <input type="password" 
                     placeholder="비밀번호"
                     onChange={validPassword} />
-                <button id="submit-button" onClick={handleSubmit}>회원가입하기</button>
+                <button id="submit-button" onClick={handleRegister}>회원가입하기</button>
             </form>
         </>
     )
