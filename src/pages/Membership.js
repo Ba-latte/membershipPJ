@@ -1,23 +1,59 @@
 // 회원가입 페이지
 
+import { useState } from 'react';
 import { firebaseAuth, createUserWithEmailAndPassword } from '../components/firebaseConfig';
 
 
+
 export default function Membership(){
-    const handleSubmit = ()=>{
-        console.log("회원가입 버튼 클릭");
+    const [emailInfo, setEmailInfo] = useState("");
+    const [passwordInfo, setPasswordInfo] = useState("");
+
+    // 이메일 주소 유효성 검사
+    const validEmail = (e)=>{
+        setEmailInfo(e.target.value);
+    };
+    // 비밀번호 유효성 검사
+    const validPassword = (e)=>{
+        setPasswordInfo(e.target.value);
+    };
+
+    // 회원가입 버튼 클릭시
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        console.log("회원가입 버튼 클릭 : ", emailInfo, passwordInfo);
+
+        // 입력된 이메일, 비밀번호 가져오기
+        const email = emailInfo;
+        const password = passwordInfo;
+
+        // 이메일과 비밀번호를 가지고 유저 등록하기
+        createUserWithEmailAndPassword(firebaseAuth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("회원가입 성공 : ", user);
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("회원가입 실패 : ", errorCode, " | ", errorMessage);
+            // ..
+        });
     };
 
     return(
         <>
             <h2>회원가입</h2>
             <form>
-                <input type="text" placeholder="이메일" />
-                <input type="password" placeholder="비밀번호" />
-                <button id="submit-button" onClick={(e)=>{
-                    e.preventDefault();
-                    handleSubmit();
-                    }}>회원가입하기</button>
+                <input type="text"
+                    placeholder="이메일"
+                    onChange={validEmail} />
+                <input type="password" 
+                    placeholder="비밀번호"
+                    onChange={validPassword} />
+                <button id="submit-button" onClick={handleSubmit}>회원가입하기</button>
             </form>
         </>
     )
