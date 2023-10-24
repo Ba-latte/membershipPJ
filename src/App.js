@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { firebaseAuth, onAuthStateChanged  } from "./components/firebaseConfig";
