@@ -1,6 +1,5 @@
 // 헤더 컴포넌트
 
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -17,11 +16,18 @@ const HeaderContainer = styled.header`
         display: flex;
         gap: 10px;
     }
+    .logout-button{
+        cursor: pointer;
+    }
 `;
 
 export default function Header(props){
     console.log("헤더영역-로그인상태 : ", props.isLogIn);
 
+    // 로그아웃 버튼 클릭시
+    const handleLogOut = ()=>{
+        console.log("로그아웃 버튼 클릭");
+    };
 
     return(
         <HeaderContainer>
@@ -32,7 +38,11 @@ export default function Header(props){
                     props.isLogIn ?
                     <ul className="menu">
                         <li className="item">
-                            <Link to={'/login'}>로그아웃</Link>
+                            <Link to={'/account'}>마이페이지</Link>
+                        </li>
+                        <li className="item"> | </li>
+                        <li className="item">
+                            <button className="logout-button" onClick={handleLogOut}>로그아웃</button>
                         </li>
                     </ul>
                     :

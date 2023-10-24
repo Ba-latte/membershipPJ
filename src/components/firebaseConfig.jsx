@@ -1,7 +1,7 @@
 // 파이어베이스
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -24,4 +24,4 @@ const firebaseAuth = getAuth(firebaseApp);
 
 
 // 내보내기
-export { firebaseAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
+export { firebaseAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged };

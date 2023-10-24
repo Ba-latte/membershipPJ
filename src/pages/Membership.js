@@ -8,6 +8,7 @@ import { firebaseAuth, createUserWithEmailAndPassword } from '../components/fire
 export default function Membership(){
     const [emailInfo, setEmailInfo] = useState("");
     const [passwordInfo, setPasswordInfo] = useState("");
+    const [nameInfo, setNameInfo] = useState("");
 
     // 이메일 주소 유효성 검사
     const validEmail = (e)=>{
@@ -16,6 +17,10 @@ export default function Membership(){
     // 비밀번호 유효성 검사
     const validPassword = (e)=>{
         setPasswordInfo(e.target.value);
+    };
+    // 닉네임 유효성 검사
+    const validName = (e)=>{
+        setNameInfo(e.target.value);
     };
 
     // 회원가입 버튼 클릭시
@@ -53,7 +58,10 @@ export default function Membership(){
                 <input type="password" 
                     placeholder="비밀번호"
                     onChange={validPassword} />
-                <button id="submit-button" onClick={handleRegister}>회원가입하기</button>
+                <input type='text'
+                placeholder='닉네임'
+                onChange={validName} />
+                <button id="submit-button" onClick={()=>handleRegister}>회원가입하기</button>
             </form>
         </>
     )
